@@ -76,9 +76,13 @@ public class ServicioMusica extends Service {
             notificationManager.createNotificationChannel(notificationChannel);
             notific.setChannelId(NOTIFICATION_CHANNEL_ID);
         }
-        notificationManager.notify(ID_NOTIFICACION_CREAR, notific.build());
+        //notificationManager.notify(ID_NOTIFICACION_CREAR, notific.build());
         Toast.makeText(this,"Servicio arrancado "+ idArranque, Toast.LENGTH_SHORT).show();
         reproductor.start();
+
+        startForeground(101,notific.build()
+        );
+
         return START_STICKY;
     }
 
