@@ -34,4 +34,8 @@ public class Servicio extends Activity {
             }
         });
     }
+
+    public void anuncio(View view) {
+        startActivity(new Intent(this, AnuncioPersonalizado.class));
+    }
 }
