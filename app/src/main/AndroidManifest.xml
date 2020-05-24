@@ -15,9 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AnuncioPersonalizado"></activity>
 
         <service android:name=".ServicioMusica" />
+        <service android:name=".ServicioOperacion" />
+        <service android:name=".IntentServiceOperacion" />
 
         <receiver android:name=".ReceptorLlamadas">
             <intent-filter>
@@ -30,6 +31,8 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".MiIntentService"></activity>
+        <activity android:name=".AnuncioPersonalizado" />
         <activity android:name=".Servicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -37,4 +37,8 @@ public class AnuncioPersonalizado extends AppCompatActivity {
     public void vibrar(View view) {
         sendBroadcast(new Intent("RESPONSE"));
     }
+
+    public void miintentservice(View view) {
+        startActivity(new Intent(this, MiIntentService.class));
+    }
 }
