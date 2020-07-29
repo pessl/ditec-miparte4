@@ -2,7 +2,10 @@ package com.example.miparte4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +23,10 @@ public class MiIntentService extends AppCompatActivity {
         entrada = (EditText) findViewById(R.id.entrada);
         salida = (TextView) findViewById(R.id.salida);
         miprogress = findViewById(R.id.miprogress);
+
+        IntentFilter filtro = new IntentFilter(ReceptorOperacion.ACTION_RESP);
+        filtro.addCategory(Intent.CATEGORY_DEFAULT);
+        registerReceiver(new ReceptorOperacion(), filtro);
     }
     public void calcularOperacion(View view) {
         double n = Double.parseDouble(entrada.getText().toString());
@@ -31,5 +38,16 @@ public class MiIntentService extends AppCompatActivity {
         Intent i = new Intent(this, IntentServiceOperacion.class);
         i.putExtra("numero", n);
         startService(i);
+    }
+
+    public class ReceptorOperacion extends BroadcastReceiver {
+        public static final String ACTION_RESP =
+                "com.example.intentservice.intent.action.RESPUESTA_OPERACION";
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Double res = intent.getDoubleExtra("resultado", 0.0);
+            salida.append(" " + res + "\n");
+            miprogress.setVisibility(View.GONE);
+        }
     }
 }
